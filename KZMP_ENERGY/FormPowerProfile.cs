@@ -60,7 +60,7 @@ namespace KZMP_ENERGY
 
         List<int> index = new List<int>();
 
-        List<string> bagList = new List<string> { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
+        public static List<string> bagList = new List<string> { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
 
         int meterListCallIndex = 0;
         bool meterListCallIndexFlag = true;
@@ -430,7 +430,7 @@ namespace KZMP_ENERGY
             return count;
         }
         //функция вычисления CRC16
-        public byte[] CalculateCrc16Modbus(byte[] bytes)
+        public static byte[] CalculateCrc16Modbus(byte[] bytes)
         {
             CRC16.CrcStdParams.StandartParameters.TryGetValue(CRC16.CrcAlgorithms.Crc16Modbus, out CRC16.Parameters crc_p);
             CRC16.Crc crc = new CRC16.Crc(crc_p);

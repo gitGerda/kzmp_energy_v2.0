@@ -130,3 +130,27 @@ A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy\KZMP_ENERGY\obj\Debug\KZMP_ENERG
 A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy\KZMP_ENERGY\obj\Debug\kzmpEnergy.exe
 A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy\KZMP_ENERGY\obj\Debug\kzmpEnergy.pdb
 A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.csproj.AssemblyReference.cache
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.csproj.AssemblyReference.cache
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.FormMainMenu.resources
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.FormConnectionParameter.resources
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.FormListOfMeters.resources
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.FormListOfMeters2.resources
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.FormPowerProfile.resources
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.FormReport.resources
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.FormTableMeasure.resources
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.InfoForReport.resources
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.Properties.Resources.resources
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.csproj.GenerateResource.cache
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.csproj.CoreCompileInputs.cache
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\kzmpEnergy.exe
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\kzmpEnergy.pdb
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\bin\Debug\kzmpEnergy.exe.config
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\bin\Debug\kzmpEnergy.exe
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\bin\Debug\kzmpEnergy.pdb
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\bin\Debug\FontAwesome.Sharp.dll
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\bin\Debug\GSMCommServer.dll
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\bin\Debug\GSMCommShared.dll
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\bin\Debug\GSMCommunication.dll
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\bin\Debug\MetroSet UI.dll
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\bin\Debug\PDUConverter.dll
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.csproj.CopyComplete

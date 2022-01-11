@@ -68,6 +68,10 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.richTextBox_conStatus2 = new System.Windows.Forms.RichTextBox();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBox_Months = new System.Windows.Forms.ComboBox();
+            this.cb_monthEnergy = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -76,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -179,12 +184,16 @@
             this.InterfaceTypeLbl.Location = new System.Drawing.Point(68, 19);
             this.InterfaceTypeLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.InterfaceTypeLbl.Name = "InterfaceTypeLbl";
-            this.InterfaceTypeLbl.Size = new System.Drawing.Size(148, 18);
+            this.InterfaceTypeLbl.Size = new System.Drawing.Size(143, 17);
             this.InterfaceTypeLbl.TabIndex = 3;
             this.InterfaceTypeLbl.Text = "Выберите счетчики:";
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cb_monthEnergy);
+            this.panel2.Controls.Add(this.comboBox_Months);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.iconPictureBox5);
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.textBox2);
             this.panel2.Controls.Add(this.label8);
@@ -210,7 +219,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 155);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(842, 147);
+            this.panel2.Size = new System.Drawing.Size(842, 204);
             this.panel2.TabIndex = 1;
             // 
             // textBox1
@@ -221,7 +230,7 @@
             this.textBox1.ForeColor = System.Drawing.Color.Yellow;
             this.textBox1.Location = new System.Drawing.Point(626, 122);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 16);
+            this.textBox1.Size = new System.Drawing.Size(175, 14);
             this.textBox1.TabIndex = 23;
             this.textBox1.Text = "(............)";
             // 
@@ -233,7 +242,7 @@
             this.textBox2.ForeColor = System.Drawing.Color.Plum;
             this.textBox2.Location = new System.Drawing.Point(626, 100);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(175, 16);
+            this.textBox2.Size = new System.Drawing.Size(175, 14);
             this.textBox2.TabIndex = 22;
             this.textBox2.Text = "(............)";
             // 
@@ -245,7 +254,7 @@
             this.label8.Location = new System.Drawing.Point(544, 122);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(80, 17);
+            this.label8.Size = new System.Drawing.Size(71, 15);
             this.label8.TabIndex = 21;
             this.label8.Text = "Результат:";
             // 
@@ -257,7 +266,7 @@
             this.label9.Location = new System.Drawing.Point(544, 99);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 17);
+            this.label9.Size = new System.Drawing.Size(47, 15);
             this.label9.TabIndex = 20;
             this.label9.Text = "Ответ:";
             // 
@@ -282,7 +291,7 @@
             this.label7.Location = new System.Drawing.Point(561, 75);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(208, 18);
+            this.label7.Size = new System.Drawing.Size(194, 17);
             this.label7.TabIndex = 18;
             this.label7.Text = "Проверка хеш-сумм ответов";
             // 
@@ -297,12 +306,12 @@
             this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
             this.iconButton2.IconColor = System.Drawing.Color.Gainsboro;
             this.iconButton2.IconSize = 38;
-            this.iconButton2.Location = new System.Drawing.Point(250, 95);
+            this.iconButton2.Location = new System.Drawing.Point(246, 146);
             this.iconButton2.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
             this.iconButton2.Rotation = 0D;
-            this.iconButton2.Size = new System.Drawing.Size(233, 49);
+            this.iconButton2.Size = new System.Drawing.Size(233, 46);
             this.iconButton2.TabIndex = 6;
             this.iconButton2.Text = "Отключить";
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -317,7 +326,7 @@
             this.TimeoutTextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TimeoutTextBox2.Location = new System.Drawing.Point(624, 50);
             this.TimeoutTextBox2.Name = "TimeoutTextBox2";
-            this.TimeoutTextBox2.Size = new System.Drawing.Size(154, 16);
+            this.TimeoutTextBox2.Size = new System.Drawing.Size(154, 14);
             this.TimeoutTextBox2.TabIndex = 17;
             this.TimeoutTextBox2.Text = "(............)";
             // 
@@ -332,12 +341,12 @@
             this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Download;
             this.iconButton1.IconColor = System.Drawing.Color.Gainsboro;
             this.iconButton1.IconSize = 38;
-            this.iconButton1.Location = new System.Drawing.Point(11, 95);
+            this.iconButton1.Location = new System.Drawing.Point(8, 146);
             this.iconButton1.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
             this.iconButton1.Rotation = 0D;
-            this.iconButton1.Size = new System.Drawing.Size(233, 49);
+            this.iconButton1.Size = new System.Drawing.Size(233, 46);
             this.iconButton1.TabIndex = 4;
             this.iconButton1.Text = "Загрузить данные";
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -352,7 +361,7 @@
             this.StatusTextBox.ForeColor = System.Drawing.Color.LimeGreen;
             this.StatusTextBox.Location = new System.Drawing.Point(624, 28);
             this.StatusTextBox.Name = "StatusTextBox";
-            this.StatusTextBox.Size = new System.Drawing.Size(154, 16);
+            this.StatusTextBox.Size = new System.Drawing.Size(154, 14);
             this.StatusTextBox.TabIndex = 16;
             this.StatusTextBox.Text = "(............)";
             // 
@@ -364,7 +373,7 @@
             this.label6.Location = new System.Drawing.Point(542, 50);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 17);
+            this.label6.Size = new System.Drawing.Size(68, 15);
             this.label6.TabIndex = 15;
             this.label6.Text = "Задержка:";
             // 
@@ -376,7 +385,7 @@
             this.label5.Location = new System.Drawing.Point(542, 27);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 17);
+            this.label5.Size = new System.Drawing.Size(50, 15);
             this.label5.TabIndex = 14;
             this.label5.Text = "Статус:";
             // 
@@ -401,7 +410,7 @@
             this.label4.Location = new System.Drawing.Point(577, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(178, 18);
+            this.label4.Size = new System.Drawing.Size(170, 17);
             this.label4.TabIndex = 12;
             this.label4.Text = "Мониторинг соединения";
             // 
@@ -413,7 +422,7 @@
             this.label3.Location = new System.Drawing.Point(321, 48);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 15);
+            this.label3.Size = new System.Drawing.Size(94, 13);
             this.label3.TabIndex = 11;
             this.label3.Text = "Конец интервала";
             // 
@@ -425,7 +434,7 @@
             this.label2.Location = new System.Drawing.Point(314, 7);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 15);
+            this.label2.Size = new System.Drawing.Size(100, 13);
             this.label2.TabIndex = 10;
             this.label2.Text = "Начало интервала";
             // 
@@ -448,7 +457,7 @@
             this.timePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.timePickerEnd.Location = new System.Drawing.Point(377, 66);
             this.timePickerEnd.Name = "timePickerEnd";
-            this.timePickerEnd.Size = new System.Drawing.Size(103, 24);
+            this.timePickerEnd.Size = new System.Drawing.Size(103, 23);
             this.timePickerEnd.TabIndex = 8;
             this.timePickerEnd.Value = new System.DateTime(2020, 9, 26, 0, 0, 0, 0);
             // 
@@ -458,7 +467,7 @@
             this.datePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.datePickerEnd.Location = new System.Drawing.Point(250, 66);
             this.datePickerEnd.Name = "datePickerEnd";
-            this.datePickerEnd.Size = new System.Drawing.Size(121, 24);
+            this.datePickerEnd.Size = new System.Drawing.Size(121, 23);
             this.datePickerEnd.TabIndex = 7;
             // 
             // timePickerStart
@@ -467,7 +476,7 @@
             this.timePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.timePickerStart.Location = new System.Drawing.Point(377, 25);
             this.timePickerStart.Name = "timePickerStart";
-            this.timePickerStart.Size = new System.Drawing.Size(103, 24);
+            this.timePickerStart.Size = new System.Drawing.Size(103, 23);
             this.timePickerStart.TabIndex = 6;
             this.timePickerStart.Value = new System.DateTime(2020, 9, 26, 0, 0, 0, 0);
             // 
@@ -477,7 +486,7 @@
             this.datePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.datePickerStart.Location = new System.Drawing.Point(250, 25);
             this.datePickerStart.Name = "datePickerStart";
-            this.datePickerStart.Size = new System.Drawing.Size(121, 24);
+            this.datePickerStart.Size = new System.Drawing.Size(121, 23);
             this.datePickerStart.TabIndex = 5;
             // 
             // label1
@@ -488,7 +497,7 @@
             this.label1.Location = new System.Drawing.Point(67, 21);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(166, 18);
+            this.label1.Size = new System.Drawing.Size(158, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "Укажите дату и время:";
             // 
@@ -513,7 +522,7 @@
             this.richTextBox_conStatus2.Name = "richTextBox_conStatus2";
             this.richTextBox_conStatus2.ReadOnly = true;
             this.richTextBox_conStatus2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBox_conStatus2.Size = new System.Drawing.Size(842, 307);
+            this.richTextBox_conStatus2.Size = new System.Drawing.Size(842, 249);
             this.richTextBox_conStatus2.TabIndex = 1;
             this.richTextBox_conStatus2.Text = "kzmp_energy:\\power_profile\\logs\n";
             // 
@@ -523,10 +532,72 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.Controls.Add(this.richTextBox_conStatus2);
-            this.panel6.Location = new System.Drawing.Point(0, 307);
+            this.panel6.Location = new System.Drawing.Point(0, 365);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(842, 307);
+            this.panel6.Size = new System.Drawing.Size(842, 249);
             this.panel6.TabIndex = 10;
+            // 
+            // iconPictureBox5
+            // 
+            this.iconPictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.UniversalAccess;
+            this.iconPictureBox5.IconColor = System.Drawing.Color.White;
+            this.iconPictureBox5.IconSize = 40;
+            this.iconPictureBox5.Location = new System.Drawing.Point(11, 96);
+            this.iconPictureBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.iconPictureBox5.Name = "iconPictureBox5";
+            this.iconPictureBox5.Size = new System.Drawing.Size(50, 40);
+            this.iconPictureBox5.TabIndex = 24;
+            this.iconPictureBox5.TabStop = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(65, 97);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(187, 17);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "Энергия (кВт*ч) за период:";
+            // 
+            // comboBox_Months
+            // 
+            this.comboBox_Months.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox_Months.FormattingEnabled = true;
+            this.comboBox_Months.Items.AddRange(new object[] {
+            "1. Январь",
+            "2. Февраль",
+            "3. Март",
+            "4. Апрель",
+            "5. Май",
+            "6. Июнь",
+            "7. Июль",
+            "8. Август",
+            "9. Сентябрь",
+            "10. Октябрь",
+            "11. Ноябрь",
+            "12. Декабрь"});
+            this.comboBox_Months.Location = new System.Drawing.Point(250, 98);
+            this.comboBox_Months.Name = "comboBox_Months";
+            this.comboBox_Months.Size = new System.Drawing.Size(230, 24);
+            this.comboBox_Months.TabIndex = 26;
+            this.comboBox_Months.Text = "Выберите месяц";
+            // 
+            // cb_monthEnergy
+            // 
+            this.cb_monthEnergy.AutoSize = true;
+            this.cb_monthEnergy.Checked = true;
+            this.cb_monthEnergy.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_monthEnergy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cb_monthEnergy.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.cb_monthEnergy.Location = new System.Drawing.Point(70, 118);
+            this.cb_monthEnergy.Name = "cb_monthEnergy";
+            this.cb_monthEnergy.Size = new System.Drawing.Size(110, 19);
+            this.cb_monthEnergy.TabIndex = 27;
+            this.cb_monthEnergy.Text = "Использовать";
+            this.cb_monthEnergy.UseVisualStyleBackColor = true;
             // 
             // FormPowerProfile
             // 
@@ -552,6 +623,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
             this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -574,7 +646,7 @@
         private FontAwesome.Sharp.IconButton iconButton2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.RichTextBox richTextBox_conStatus2;
+        public  System.Windows.Forms.RichTextBox richTextBox_conStatus2;
         private System.Windows.Forms.DataGridViewCheckBoxColumn CheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn AddrressColumn;
@@ -593,5 +665,9 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox cb_monthEnergy;
+        private System.Windows.Forms.ComboBox comboBox_Months;
+        private System.Windows.Forms.Label label10;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox5;
     }
 }
