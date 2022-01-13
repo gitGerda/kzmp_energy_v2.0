@@ -24,7 +24,7 @@ namespace KZMP_ENERGY
     {
         //static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=DBkzmp_energy;Integrated Security=True";
         static string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        SqlConnection connection = new SqlConnection(connectionString);
+        public static SqlConnection connection = new SqlConnection(connectionString);
         string sql_cmd = "";
         bool global_status_flag;
         bool crc_check_flag = false;
@@ -83,7 +83,7 @@ namespace KZMP_ENERGY
         {
             InitializeComponent();
             //System.Globalization.CultureInfo.GetCultureInfo("en-US");
-            progressBar1.Visible = false;
+            //progressBar1.Visible = false;
             
             port = FormConnectionParameter.port;
 
@@ -199,7 +199,7 @@ namespace KZMP_ENERGY
                 }
             if (!global_status_flag)
             {
-                StatusTextBox.Text = "NO CARRIER";
+                //StatusTextBox.Text = "NO CARRIER";
 
                 MessageBox.Show(
                 "Ошибка связи: потеря несущей.\nБудет выполнена перезагрузка программы.",
@@ -213,7 +213,7 @@ namespace KZMP_ENERGY
             }
             else 
             {
-                StatusTextBox.Text = "CONNECTED";
+                //StatusTextBox.Text = "CONNECTED";
             }
         }
         private async void iconButton1_MouseDown_func() 
@@ -224,12 +224,12 @@ namespace KZMP_ENERGY
                 //selected_index = comboBox1.SelectedIndex;
 
                 //блокировка кнопок формы
-                              g.btnHome.Enabled = false;
+                             /* g.btnHome.Enabled = false;
                              g.iconButton1.Enabled = false;
                              g.iconButton2.Enabled = false;
-                              g.iconButton3.Enabled = false;
-                // g.iconButton4.Enabled = false;
-                              g.iconButton5.Enabled = false;
+                              g.iconButton3.Enabled = false;*/
+             
+                             /* g.iconButton5.Enabled = false;
                              g.iconButton6.Enabled = false;
                               g.iconButton4.Enabled = false;
 
@@ -238,7 +238,7 @@ namespace KZMP_ENERGY
                                 datePickerStart.Enabled = false;
                                 datePickerEnd.Enabled = false;
                                 timePickerStart.Enabled = false;
-                                timePickerEnd.Enabled = false;
+                                timePickerEnd.Enabled = false;*/
 
                 //инициализация переменной, в которой хранится число счётчиков для которых нужно снять данные
                 //meterCallIndex служит и как индекс следующего счётчика и как число характеризующее количество вызовов iconButton1_MouseDown
@@ -251,19 +251,19 @@ namespace KZMP_ENERGY
                     if (meterListCallIndex == 0)
                     {
                         meterListCallIndexFlag2 = false;
-                        richTextBox_conStatus2.AppendText("\nERROR: Не выбран ни один счётчик!");
-                        richTextBox_conStatus2.ScrollToCaret();
+                        /*richTextBox_conStatus2.AppendText("\nERROR: Не выбран ни один счётчик!");
+                        richTextBox_conStatus2.ScrollToCaret();*/
                     }
                     else 
                     {
                         meterListCallIndexFlag2 = true;
-                        richTextBox_conStatus2.AppendText("\nСледующие счетчики добавлены в лист ожидания:");
-                        richTextBox_conStatus2.ScrollToCaret();
+                        /*richTextBox_conStatus2.AppendText("\nСледующие счетчики добавлены в лист ожидания:");
+                        richTextBox_conStatus2.ScrollToCaret();*/
 
                         for (int i = 0; i < meterListCallIndex; i++)
                         {
-                           richTextBox_conStatus2.AppendText("\n\tСетевой адрес: "+ meter_address[index[i]]);
-                           richTextBox_conStatus2.ScrollToCaret();
+                           /*richTextBox_conStatus2.AppendText("\n\tСетевой адрес: "+ meter_address[index[i]]);
+                           richTextBox_conStatus2.ScrollToCaret();*/
                         }
                     }
                     meterListCallIndex = meterListCallIndex - 1;
@@ -315,17 +315,17 @@ namespace KZMP_ENERGY
         {
             try
             {
-                progressBar1.Visible = true;
+               // progressBar1.Visible = true;
 
                 if (port.CDHolding) 
                 {
-                    StatusTextBox.ForeColor = Color.LimeGreen;
-                    StatusTextBox.Text = "CONNECTED";
+                   // StatusTextBox.ForeColor = Color.LimeGreen;
+                   // StatusTextBox.Text = "CONNECTED";
                     global_status_flag = true;
                 }
                 else 
                 {
-                    StatusTextBox.Text = "NO CARRIER";
+                   // StatusTextBox.Text = "NO CARRIER";
                     global_status_flag = false;
                 }
                 //получение индексов отмеченных галочкой в dataGridView1 счётчиков
@@ -467,9 +467,9 @@ namespace KZMP_ENERGY
                 meter_connection_test[2] = crc[0];
                 meter_connection_test[3] = crc[1];
 
-                richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nТЕСТИРОВАНИЕ СОЕДИНЕНИЯ СО СЧЁТЧИКОМ (адрес: " + Convert.ToString(address)+ ")\n-------------------------------------------------------------------------------------------------");
+                /*richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nТЕСТИРОВАНИЕ СОЕДИНЕНИЯ СО СЧЁТЧИКОМ (адрес: " + Convert.ToString(address)+ ")\n-------------------------------------------------------------------------------------------------");
                 richTextBox_conStatus2.ScrollToCaret();
-
+*/
                 timeOver = 0;
                 timeOverFlag = true;
                 if (timeOverFlag)
@@ -483,8 +483,8 @@ namespace KZMP_ENERGY
                 byte[] crc2 = CalculateCrc16Modbus(ath_meter_crc);
                 byte[] ath_meter = new byte[11] { hex, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, crc2[0], crc2[1] };
 
-                richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nАУТЕНТИФИКАЦИЯ И АВТОРИЗАЦИЯ НА СЧЁТЧИКЕ(адрес: " + Convert.ToString(address) + ")\n-------------------------------------------------------------------------------------------------");
-                richTextBox_conStatus2.ScrollToCaret();
+                /*richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nАУТЕНТИФИКАЦИЯ И АВТОРИЗАЦИЯ НА СЧЁТЧИКЕ(адрес: " + Convert.ToString(address) + ")\n-------------------------------------------------------------------------------------------------");
+                richTextBox_conStatus2.ScrollToCaret();*/
 
                 await Task.Run(() => write(ath_meter, ath_meter.Length));
                 await Task.Run(() => read_for_auth(ath_meter, ath_meter.Length, hex, address));
@@ -676,13 +676,13 @@ namespace KZMP_ENERGY
                 int proc = 10;
                 int fg = step;
 
-                richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nЗАГРУЗКА ПРОФИЛЯ МОЩНОСТИ...(адрес: " + Convert.ToString(address) + ")\n-------------------------------------------------------------------------------------------------\n");
-                richTextBox_conStatus2.ScrollToCaret();
+                //richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nЗАГРУЗКА ПРОФИЛЯ МОЩНОСТИ...(адрес: " + Convert.ToString(address) + ")\n-------------------------------------------------------------------------------------------------\n");
+                //richTextBox_conStatus2.ScrollToCaret();
 
-                progressBar1.Value = 0;
+                /*progressBar1.Value = 0;
                 progressBar1.Maximum = count_local;
                 progressBar1.Minimum = 0;
-                progressBar1.Step = 1;
+                progressBar1.Step = 1;*/
 
                 byte code_write_profile = 0x03;
                 if (meter_type[selected_index].Contains("234"))
@@ -701,12 +701,25 @@ namespace KZMP_ENERGY
                     {
                         await Task.Run(() => write_profile(code_write_profile, address_b, older, young, ref count_local));
                         await Task.Run(() => read30_power_profile(id_meter, address, ref older, ref young, ref code_write_profile, ref count_local));
-                        await Task.Run(() => loading_status(ref i, ref fg, ref proc, ref step));
+                        //await Task.Run(() => loading_status(ref i, ref fg, ref proc, ref step));
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "kzmp_energy notification", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     }
+                }
+                try
+                {
+                    if (cb_monthEnergy.Checked)
+                    {
+                        KZMP_ENERGY.monthEnergy.energy energyReadClass = new monthEnergy.energy(ref port, address_b, id_meter, comboBox_Months.SelectedItem.ToString(), this);
+                        energyReadClass.getMonthEnergy();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    //richTextBox_conStatus2.AppendText(ex.Message);
+                    //richTextBox_conStatus2.ScrollToCaret();
                 }
             }
             else if (GSM_gateway_flag)
@@ -720,7 +733,7 @@ namespace KZMP_ENERGY
                     {
                         await Task.Run(() => write_profile_gateway(code_write_profile, address_b, older, young, ref count_local));
                         await Task.Run(() => read30_power_profile_gateway(id_meter, address, ref older, ref young, ref code_write_profile, ref count_local));
-                        await Task.Run(() => loading_status(ref i, ref fg, ref proc, ref step));
+                       // await Task.Run(() => loading_status(ref i, ref fg, ref proc, ref step));
                     }
                     catch (Exception ex)
                     {
@@ -759,7 +772,7 @@ namespace KZMP_ENERGY
         {
             if (crc_check_flag&&!timeOverFlag)
             {
-                progressBar1.PerformStep();
+                //progressBar1.PerformStep();
             }
 
             try
@@ -812,7 +825,7 @@ namespace KZMP_ENERGY
 
             if (!port.CDHolding)
             {
-                StatusTextBox.Text = "NO CARRIER";
+               // StatusTextBox.Text = "NO CARRIER";
                 global_status_flag = false;
 
                 MessageBox.Show(
@@ -876,7 +889,7 @@ namespace KZMP_ENERGY
 
             if (!port.CDHolding)
             {
-                StatusTextBox.Text = "NO CARRIER";
+               // StatusTextBox.Text = "NO CARRIER";
                 global_status_flag = false;
 
                 MessageBox.Show(
@@ -902,7 +915,7 @@ namespace KZMP_ENERGY
             {
                 if (!port.CDHolding) 
                 { 
-                    StatusTextBox.Text = "NO CARRIER";
+                   // StatusTextBox.Text = "NO CARRIER";
                     global_status_flag = false;
 
                     MessageBox.Show(
@@ -931,7 +944,7 @@ namespace KZMP_ENERGY
 
             if (!port.CDHolding)
             {
-                StatusTextBox.Text = "NO CARRIER";
+               // StatusTextBox.Text = "NO CARRIER";
                 global_status_flag = false;
 
                 MessageBox.Show(
@@ -948,8 +961,10 @@ namespace KZMP_ENERGY
             port.DiscardInBuffer();
             port.Write(meter_conn_closing, 0, meter_conn_closing.Length);
             //MessageBox.Show("Профиль мощности для счетчика с сетевым адресом "+Convert.ToInt32(address_b)+" считан. Соединение с счетчиком закрыто.");
-                 richTextBox_conStatus2.AppendText("\nСоединение с счетчиком (сетевой адрес " + Convert.ToInt32(address_b) + ") закрыто.");
-                richTextBox_conStatus2.ScrollToCaret();
+
+
+                // richTextBox_conStatus2.AppendText("\nСоединение с счетчиком (сетевой адрес " + Convert.ToInt32(address_b) + ") закрыто.");
+                //richTextBox_conStatus2.ScrollToCaret();
 
             
         }
@@ -988,8 +1003,8 @@ namespace KZMP_ENERGY
             port.DiscardInBuffer();
             port.Write(meter_conn_closing_gateway, 0, meter_conn_closing_gateway.Length);
             //MessageBox.Show("Профиль мощности для счетчика с сетевым адресом "+Convert.ToInt32(address_b)+" считан. Соединение с счетчиком закрыто.");
-            richTextBox_conStatus2.AppendText("\nСоединение с счетчиком (сетевой адрес " + Convert.ToInt32(address_b) + ") закрыто.");
-            richTextBox_conStatus2.ScrollToCaret();
+            //richTextBox_conStatus2.AppendText("\nСоединение с счетчиком (сетевой адрес " + Convert.ToInt32(address_b) + ") закрыто.");
+            //richTextBox_conStatus2.ScrollToCaret();
 
 
         }
@@ -1001,7 +1016,7 @@ namespace KZMP_ENERGY
             int i = 0;
             int count = 0;
             int lng = 0;
-            TimeoutTextBox2.Text = "#Auth";
+            //TimeoutTextBox2.Text = "#Auth";
 
             int timeToSleep = 10;
 
@@ -1009,7 +1024,7 @@ namespace KZMP_ENERGY
             {
                 if (!port.CDHolding)
                 {
-                    StatusTextBox.Text = "NO CARRIER";
+                   // StatusTextBox.Text = "NO CARRIER";
                     global_status_flag = false;
 
                     MessageBox.Show(
@@ -1039,18 +1054,27 @@ namespace KZMP_ENERGY
                     count = 0;
                 }
                 Thread.Sleep(timeToSleep);
-                if (i == 500) {  richTextBox_conStatus2.AppendText("\nWARNING: Нет ответа. Попытка 2."); richTextBox_conStatus2.ScrollToCaret(); write(z, x); Thread.Sleep(500); }
+                if (i == 500) {  
+                    /*richTextBox_conStatus2.AppendText("\nWARNING: Нет ответа. Попытка 2."); 
+                    richTextBox_conStatus2.ScrollToCaret(); write(z, x);*/
+                    Thread.Sleep(500); }
                 //if (i==60) { write(z, x);Thread.Sleep(500); }
-                if (i == 1000) { richTextBox_conStatus2.AppendText("\nWARNING: Нет ответа. Попытка 3."); richTextBox_conStatus2.ScrollToCaret(); write(z, x); Thread.Sleep(500); }
+                if (i == 1000) { 
+                    /*richTextBox_conStatus2.AppendText("\nWARNING: Нет ответа. Попытка 3.");
+                    richTextBox_conStatus2.ScrollToCaret(); write(z, x);*/
+                    Thread.Sleep(500); }
                 // if (i == 120) { write(z, x); Thread.Sleep(500); }
-                if (i == 1500) { richTextBox_conStatus2.AppendText("\nWARNING: Нет ответа. Попытка 4."); richTextBox_conStatus2.ScrollToCaret(); write(z, x); Thread.Sleep(500); }
+                if (i == 1500) { 
+                    /*richTextBox_conStatus2.AppendText("\nWARNING: Нет ответа. Попытка 4."); 
+                    richTextBox_conStatus2.ScrollToCaret(); write(z, x);*/
+                    Thread.Sleep(500); }
                 // if (i == 180) { write(z, x); Thread.Sleep(500); }
                 //if (i == 210) { write(z, x); Thread.Sleep(1000); }
                 if (i == 2000)
                 {
                     //MessageBox.Show("Ошибка авторизации на счетчике! (нет ответа)");
-                    richTextBox_conStatus2.AppendText("\nERROR: нет ответа от счётчика. ");
-                    richTextBox_conStatus2.ScrollToCaret();
+                    /*richTextBox_conStatus2.AppendText("\nERROR: нет ответа от счётчика. ");
+                    richTextBox_conStatus2.ScrollToCaret();*/
 
                     auth_flag = false;
                     break;
@@ -1064,8 +1088,8 @@ namespace KZMP_ENERGY
                 byte[] var_isp_crcR = CalculateCrc16Modbus(var_isp_crc);
                 byte[] var_isp = new byte[] { hex, 8, 18, var_isp_crcR[0], var_isp_crcR[1] };
 
-                richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nЗАПРОС НА ПОЛУЧЕНИЕ ДАННЫХ ВАРИАНТА ИСПОЛНЕНИЯ\n-------------------------------------------------------------------------------------------------");
-                richTextBox_conStatus2.ScrollToCaret();
+                /*richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nЗАПРОС НА ПОЛУЧЕНИЕ ДАННЫХ ВАРИАНТА ИСПОЛНЕНИЯ\n-------------------------------------------------------------------------------------------------");
+                richTextBox_conStatus2.ScrollToCaret();*/
 
                 crc_check_flag = false;
                 timeOver = 0;
@@ -1081,8 +1105,8 @@ namespace KZMP_ENERGY
                 byte[] crc3 = CalculateCrc16Modbus(last_parameter_crc);
                 byte[] last_parameter = new byte[5] { hex, 8, 19, crc3[0], crc3[1] };
 
-                richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nЗАПРОС НА ПОЛУЧЕНИЕ ДАННЫХ О ПОСЛЕДНЕЙ ЗАПИСИ СЧЁТЧИКА\n-------------------------------------------------------------------------------------------------");
-                richTextBox_conStatus2.ScrollToCaret();
+                /*richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nЗАПРОС НА ПОЛУЧЕНИЕ ДАННЫХ О ПОСЛЕДНЕЙ ЗАПИСИ СЧЁТЧИКА\n-------------------------------------------------------------------------------------------------");
+                richTextBox_conStatus2.ScrollToCaret();*/
 
                 crc_check_flag = false;
                 timeOver = 0;
@@ -1105,7 +1129,7 @@ namespace KZMP_ENERGY
 
                     index_endInfoAboutSession = index_endInfoAboutSession + 1;
 
-                    richTextBox_conStatus2.Clear();
+                    //richTextBox_conStatus2.Clear();
 
                     meterListCallIndex = meterListCallIndex - 1;
                     //richTextBox_conStatus2.AppendText("");
@@ -1134,13 +1158,13 @@ namespace KZMP_ENERGY
             int i = 0;
             int count = 0;
             int lng = 0;
-            TimeoutTextBox2.Text = "#Auth";
+           // TimeoutTextBox2.Text = "#Auth";
             int timeToSleep = 10;
             while (lng < 11)
             {
                 if (!port.CDHolding)
                 {
-                    StatusTextBox.Text = "NO CARRIER";
+                   // StatusTextBox.Text = "NO CARRIER";
                     global_status_flag = false;
 
                     MessageBox.Show(
@@ -1170,18 +1194,28 @@ namespace KZMP_ENERGY
                     count = 0;
                 }
                 Thread.Sleep(timeToSleep);
-                if (i == 500) {  richTextBox_conStatus2.AppendText("\nWARNING: Нет ответа. Попытка 2."); richTextBox_conStatus2.ScrollToCaret(); write(z, x); Thread.Sleep(500); }
+                if (i == 500) {  
+                    /*richTextBox_conStatus2.AppendText("\nWARNING: Нет ответа. Попытка 2."); 
+                    richTextBox_conStatus2.ScrollToCaret(); write(z, x); */
+                    Thread.Sleep(500); }
                 //if (i==60) { write(z, x);Thread.Sleep(500); }
-                if (i == 1000) {  richTextBox_conStatus2.AppendText("\nWARNING: Нет ответа. Попытка 3."); richTextBox_conStatus2.ScrollToCaret(); write(z, x); Thread.Sleep(500); }
+                if (i == 1000) { 
+                    /*richTextBox_conStatus2.AppendText("\nWARNING: Нет ответа. Попытка 3."); 
+                    richTextBox_conStatus2.ScrollToCaret(); */
+                    write(z, x); 
+                    Thread.Sleep(500); }
                 // if (i == 120) { write(z, x); Thread.Sleep(500); }
-                if (i == 1500) { richTextBox_conStatus2.AppendText("\nWARNING: Нет ответа. Попытка 4."); richTextBox_conStatus2.ScrollToCaret(); write(z, x); Thread.Sleep(500); }
+                if (i == 1500) { 
+                    /*richTextBox_conStatus2.AppendText("\nWARNING: Нет ответа. Попытка 4.");
+                    richTextBox_conStatus2.ScrollToCaret(); */
+                    write(z, x); Thread.Sleep(500); }
                 // if (i == 180) { write(z, x); Thread.Sleep(500); }
                 //if (i == 210) { write(z, x); Thread.Sleep(1000); }
                 if (i == 2000)
                 {
                     //MessageBox.Show("Ошибка авторизации на счетчике! (нет ответа)");
-                    richTextBox_conStatus2.AppendText("\nERROR: нет ответа от счётчика. ");
-                    richTextBox_conStatus2.ScrollToCaret();
+                    /*richTextBox_conStatus2.AppendText("\nERROR: нет ответа от счётчика. ");
+                    richTextBox_conStatus2.ScrollToCaret();*/
 
                     auth_flag = false;
                     break;
@@ -1228,8 +1262,8 @@ namespace KZMP_ENERGY
                 var_isp_gateway[1] = crc24[1];
                 var_isp_gateway[2] = crc24[2];
 
-                richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nЗАПРОС НА ПОЛУЧЕНИЕ ДАННЫХ ВАРИАНТА ИСПОЛНЕНИЯ\n-------------------------------------------------------------------------------------------------");
-                richTextBox_conStatus2.ScrollToCaret();
+                /*richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nЗАПРОС НА ПОЛУЧЕНИЕ ДАННЫХ ВАРИАНТА ИСПОЛНЕНИЯ\n-------------------------------------------------------------------------------------------------");
+                richTextBox_conStatus2.ScrollToCaret();*/
 
                 crc_check_flag = false;
                 timeOver = 0;
@@ -1275,8 +1309,8 @@ namespace KZMP_ENERGY
                 last_parameter_gateway[1] = crc24[1];
                 last_parameter_gateway[2] = crc24[2];
 
-                richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nЗАПРОС НА ПОЛУЧЕНИЕ ДАННЫХ О ПОСЛЕДНЕЙ ЗАПИСИ СЧЁТЧИКА\n-------------------------------------------------------------------------------------------------");
-                richTextBox_conStatus2.ScrollToCaret();
+                /*richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nЗАПРОС НА ПОЛУЧЕНИЕ ДАННЫХ О ПОСЛЕДНЕЙ ЗАПИСИ СЧЁТЧИКА\n-------------------------------------------------------------------------------------------------");
+                richTextBox_conStatus2.ScrollToCaret();*/
 
                 crc_check_flag = false;
                 timeOver = 0;
@@ -1298,7 +1332,7 @@ namespace KZMP_ENERGY
 
                     index_endInfoAboutSession = index_endInfoAboutSession + 1;
 
-                    richTextBox_conStatus2.Clear();
+                    //richTextBox_conStatus2.Clear();
 
                     meterListCallIndex = meterListCallIndex - 1;
                     Thread.Sleep(2000);
@@ -1321,20 +1355,20 @@ namespace KZMP_ENERGY
 
             private void EnterEndInfoAboutSession()
         {                                    
-           richTextBox_conStatus2.AppendText("\n\n.................................................................................................\nОТЧЁТ ЗА СЕССИЮ\n.................................................................................................");           richTextBox_conStatus2.ScrollToCaret();
+           /*richTextBox_conStatus2.AppendText("\n\n.................................................................................................\nОТЧЁТ ЗА СЕССИЮ\n.................................................................................................");           richTextBox_conStatus2.ScrollToCaret();*/
 
             for (int i = 0; i < EndInfoAboutSessionList.Count; i++)
             {
-                richTextBox_conStatus2.AppendText("\nСетевой адрес: "+EndInfoAboutSessionList[i].meter_address + "->" + EndInfoAboutSessionList[i].state);
-                richTextBox_conStatus2.ScrollToCaret();
+                /*richTextBox_conStatus2.AppendText("\nСетевой адрес: "+EndInfoAboutSessionList[i].meter_address + "->" + EndInfoAboutSessionList[i].state);
+                richTextBox_conStatus2.ScrollToCaret();*/
             }
 
-            StatusTextBox.ForeColor = Color.Red;
+            /*StatusTextBox.ForeColor = Color.Red;
             StatusTextBox.Text = "DISCONNECTED";
 
             TimeoutTextBox2.Text = "(............)";
             textBox1.Text = "(............)";
-            textBox2.Text= "(............)";
+            textBox2.Text= "(............)";*/
 
             MessageBox.Show(
             "Опрос счётчиков окончен.\nСоединение с модемом закрыто.\nОтчёт о результате опроса смотрите в окне логов.",
@@ -1393,10 +1427,10 @@ namespace KZMP_ENERGY
                 int lng = 0;
                 while (lng < 9)
                 {
-                    TimeoutTextBox2.Text = Convert.ToString(timeOver) + "(мс)";
+                   // TimeoutTextBox2.Text = Convert.ToString(timeOver) + "(мс)";
                     if (!port.CDHolding)
                     {
-                        StatusTextBox.Text = "NO CARRIER";
+                        //StatusTextBox.Text = "NO CARRIER";
                         global_status_flag = false;
 
                         MessageBox.Show(
@@ -1430,8 +1464,8 @@ namespace KZMP_ENERGY
                     {
                         timeOverFlag = true;
 
-                        richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
-                        richTextBox_conStatus2.ScrollToCaret();
+                        /*richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
+                        richTextBox_conStatus2.ScrollToCaret();*/
                         break;
                     }
 
@@ -1486,10 +1520,10 @@ namespace KZMP_ENERGY
                 int lng = 0;
                 while (lng < 18)
                 {
-                    TimeoutTextBox2.Text = Convert.ToString(timeOver) + "(мс)";
+                    //TimeoutTextBox2.Text = Convert.ToString(timeOver) + "(мс)";
                     if (!port.CDHolding)
                     {
-                        StatusTextBox.Text = "NO CARRIER";
+                        //StatusTextBox.Text = "NO CARRIER";
                         global_status_flag = false;
 
                         MessageBox.Show(
@@ -1523,8 +1557,8 @@ namespace KZMP_ENERGY
                     {
                         timeOverFlag = true;
 
-                        richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
-                        richTextBox_conStatus2.ScrollToCaret();
+                        /*richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
+                        richTextBox_conStatus2.ScrollToCaret();*/
                         break;
                     }
 
@@ -1581,10 +1615,10 @@ namespace KZMP_ENERGY
                 int lng = 0;
                 while (lng < 4)
                 {
-                    TimeoutTextBox2.Text = Convert.ToString(timeOver)+"(мс)";
+                    //TimeoutTextBox2.Text = Convert.ToString(timeOver)+"(мс)";
                     if (!port.CDHolding)
                     {
-                        StatusTextBox.Text = "NO CARRIER";
+                       // StatusTextBox.Text = "NO CARRIER";
                         global_status_flag = false;
 
                         MessageBox.Show(
@@ -1618,8 +1652,8 @@ namespace KZMP_ENERGY
                     {
                         timeOverFlag = true;
 
-                        richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
-                        richTextBox_conStatus2.ScrollToCaret();
+                       /* richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
+                        richTextBox_conStatus2.ScrollToCaret();*/
                         break;
                     }
 
@@ -1653,10 +1687,10 @@ namespace KZMP_ENERGY
                 int lng = 0;
                 while (lng < 11)
                 {
-                    TimeoutTextBox2.Text = Convert.ToString(timeOver)+"(мс)";
+                    //TimeoutTextBox2.Text = Convert.ToString(timeOver)+"(мс)";
                     if (!port.CDHolding)
                     {
-                        StatusTextBox.Text = "NO CARRIER";
+                       // StatusTextBox.Text = "NO CARRIER";
                         global_status_flag = false;
 
                         MessageBox.Show(
@@ -1692,8 +1726,8 @@ namespace KZMP_ENERGY
                     {
                         timeOverFlag = true;
 
-                        richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
-                        richTextBox_conStatus2.ScrollToCaret();
+                        /*richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
+                        richTextBox_conStatus2.ScrollToCaret();*/
                         break;
                     }
 
@@ -1730,10 +1764,10 @@ namespace KZMP_ENERGY
                 int localTimeOver = 500;
                 while (lng < 3)
                 {
-                    TimeoutTextBox2.Text = Convert.ToString(localTimeOver) + "(мс)";
+                   // TimeoutTextBox2.Text = Convert.ToString(localTimeOver) + "(мс)";
                     if (!port.CDHolding)
                     {
-                        StatusTextBox.Text = "NO CARRIER";
+                       // StatusTextBox.Text = "NO CARRIER";
                         global_status_flag = false;
 
                         MessageBox.Show(
@@ -1775,7 +1809,7 @@ namespace KZMP_ENERGY
                     EndInfoAboutSessionList[index_endInfoAboutSession].state = "Успех.";
                     index_endInfoAboutSession = index_endInfoAboutSession + 1;
 
-                    richTextBox_conStatus2.Clear();
+                   // richTextBox_conStatus2.Clear();
 
                     meterListCallIndex = meterListCallIndex - 1;
                     Thread.Sleep(2000);
@@ -1824,7 +1858,7 @@ namespace KZMP_ENERGY
                 {
                     if (!port.CDHolding)
                     {
-                        StatusTextBox.Text = "NO CARRIER";
+                       // StatusTextBox.Text = "NO CARRIER";
                         global_status_flag = false;
 
                         MessageBox.Show(
@@ -1857,8 +1891,8 @@ namespace KZMP_ENERGY
                     {
                         timeOverFlag = true;
 
-                        richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
-                        richTextBox_conStatus2.ScrollToCaret();
+                        /*richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
+                        richTextBox_conStatus2.ScrollToCaret();*/
                         break;
                     }
                     if (lng >= 12)
@@ -1947,10 +1981,10 @@ namespace KZMP_ENERGY
                 int lng = 0;
                 while (lng < 21)
                 {
-                    TimeoutTextBox2.Text = Convert.ToString(timeOver) + "(мс)";
+                   // TimeoutTextBox2.Text = Convert.ToString(timeOver) + "(мс)";
                     if (!port.CDHolding)
                     {
-                        StatusTextBox.Text = "NO CARRIER";
+                      //  StatusTextBox.Text = "NO CARRIER";
                         global_status_flag = false;
 
                         MessageBox.Show(
@@ -1984,8 +2018,8 @@ namespace KZMP_ENERGY
                     {
                         timeOverFlag = true;
 
-                        richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
-                        richTextBox_conStatus2.ScrollToCaret();
+                        /*richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
+                        richTextBox_conStatus2.ScrollToCaret();*/
                         break;
                     }
 
@@ -2142,10 +2176,10 @@ namespace KZMP_ENERGY
             int timeCountIndex = 500;
             while (lng < 33)
             {
-                TimeoutTextBox2.Text = Convert.ToString(timeCountIndex + " (мс)");
+                //TimeoutTextBox2.Text = Convert.ToString(timeCountIndex + " (мс)");
                 if (!port.CDHolding)
                 {
-                    StatusTextBox.Text = "NO CARRIER";
+                   // StatusTextBox.Text = "NO CARRIER";
                     global_status_flag = false;
 
                     MessageBox.Show(
@@ -2177,8 +2211,8 @@ namespace KZMP_ENERGY
                 {
                     timeOverFlag = true;
 
-                    richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
-                    richTextBox_conStatus2.ScrollToCaret();
+                    /*richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
+                    richTextBox_conStatus2.ScrollToCaret();*/
                     break;
                 }
 
@@ -2218,16 +2252,13 @@ namespace KZMP_ENERGY
                     int year_b = Convert.ToInt32(year);
                     string last_data = day_b.ToString("X") + "." + month_b.ToString("X") + "." + year_b.ToString("X") + " " + hour_b.ToString("X") + ":" + minute_b.ToString("X");
 
-                    richTextBox_conStatus2.AppendText("\t -->" + last_data);
-                    richTextBox_conStatus2.ScrollToCaret();
+                    /*richTextBox_conStatus2.AppendText("\t -->" + last_data);
+                    richTextBox_conStatus2.ScrollToCaret();*/
 
-                    textBox2.Text = last_data;
-                    textBox1.Text = "ОК";
+                   // textBox2.Text = last_data;
+                   // textBox1.Text = "ОК";
 
-                    //int count_end = Count30_end(last_data);
-
-                    // if (count_end > 0)
-                    // {
+                    
 
                     //1-ая часть ответа
 
@@ -2309,8 +2340,8 @@ namespace KZMP_ENERGY
                     }
                     catch (Exception ex)
                     {
-                        richTextBox_conStatus2.AppendText("\nERROR: " + ex.Message + "\n");
-                        richTextBox_conStatus2.ScrollToCaret();
+                        /*richTextBox_conStatus2.AppendText("\nERROR: " + ex.Message + "\n");
+                        richTextBox_conStatus2.ScrollToCaret();*/
                     }
 
                     //2-ая часть ответа
@@ -2411,8 +2442,8 @@ namespace KZMP_ENERGY
                     }
                     catch (Exception ex)
                     {
-                        richTextBox_conStatus2.AppendText("\nERROR: " + ex.Message + "\n");
-                        richTextBox_conStatus2.ScrollToCaret();
+                        /*richTextBox_conStatus2.AppendText("\nERROR: " + ex.Message + "\n");
+                        richTextBox_conStatus2.ScrollToCaret();*/
                     }
 
 
@@ -2446,11 +2477,11 @@ namespace KZMP_ENERGY
                 {
                     crc_check_flag = false;
 
-                    richTextBox_conStatus2.AppendText("\n###Повтор запроса - не совпадение CRC-значений!###");
+                    /*richTextBox_conStatus2.AppendText("\n###Повтор запроса - не совпадение CRC-значений!###");
                     richTextBox_conStatus2.ScrollToCaret();
-
-                    textBox2.Text = "######################";
-                    textBox1.Text = "Не совпадение хэш-сумм";
+*/
+                    /*textBox2.Text = "######################";
+                    textBox1.Text = "Не совпадение хэш-сумм";*/
 
                 }
             }
@@ -2465,10 +2496,10 @@ namespace KZMP_ENERGY
             int timeCountIndex = 500;
             while (lng < 42)
             {
-                TimeoutTextBox2.Text = Convert.ToString(timeCountIndex + " (мс)");
+                //TimeoutTextBox2.Text = Convert.ToString(timeCountIndex + " (мс)");
                 if (!port.CDHolding)
                 {
-                    StatusTextBox.Text = "NO CARRIER";
+                    //StatusTextBox.Text = "NO CARRIER";
                     global_status_flag = false;
 
                     MessageBox.Show(
@@ -2501,8 +2532,8 @@ namespace KZMP_ENERGY
                 {
                     timeOverFlag = true;
 
-                    richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
-                    richTextBox_conStatus2.ScrollToCaret();
+                    /*richTextBox_conStatus2.AppendText("\n#Нет ответа от счетчика. Повтор запроса.\n");
+                    richTextBox_conStatus2.ScrollToCaret();*/
                     break;
                 }
 
@@ -2547,16 +2578,12 @@ namespace KZMP_ENERGY
                     int year_b = Convert.ToInt32(year);
                     string last_data = day_b.ToString("X") + "." + month_b.ToString("X") + "." + year_b.ToString("X") + " " + hour_b.ToString("X") + ":" + minute_b.ToString("X");
 
-                    richTextBox_conStatus2.AppendText("\t -->" + last_data);
-                    richTextBox_conStatus2.ScrollToCaret();
+                    /*richTextBox_conStatus2.AppendText("\t -->" + last_data);
+                    richTextBox_conStatus2.ScrollToCaret();*/
 
-                    textBox2.Text = last_data;
-                    textBox1.Text = "OK";
+                    /*textBox2.Text = last_data;
+                    textBox1.Text = "OK";*/
 
-                    //int count_end = Count30_end(last_data);
-
-                    // if (count_end > 0)
-                    // {
 
                     //1-ая часть ответа
 
@@ -2593,7 +2620,7 @@ namespace KZMP_ENERGY
                     int p_minus = Convert.ToInt32(p_minus_str, 16);
                     float p_minus_f = Convert.ToSingle(p_minus);
                     calcRealPowerProfile(ref p_minus_f, T, A);
-                    //if (p_minus_f > 65) { p_minus_f = 0; }
+                  
                     if (p_minus_str == "FFFF") { p_minus_f = 0; }
                     p_minus_str = Convert.ToString(p_minus_f);
                     if (p_minus_str.Contains(",")) p_minus_str = p_minus_str.Replace(",", ".");
@@ -2625,7 +2652,7 @@ namespace KZMP_ENERGY
                     int q_minus = Convert.ToInt32(q_minus_str, 16);
                     float q_minus_f = Convert.ToSingle(q_minus);
                     calcRealPowerProfile(ref q_minus_f, T, A);
-                    //if (q_minus_f > 65) { q_minus_f = 0; }
+                    
                     if (q_minus_str == "FFFF") { q_minus_f = 0; }
                     q_minus_str = Convert.ToString(q_minus_f);
                     if (q_minus_str.Contains(",")) q_minus_str = q_minus_str.Replace(",", ".");
@@ -2638,8 +2665,8 @@ namespace KZMP_ENERGY
                     }
                     catch (Exception ex)
                     {
-                        richTextBox_conStatus2.AppendText("\nERROR: " + ex.Message + "\n");
-                        richTextBox_conStatus2.ScrollToCaret();
+                        /*richTextBox_conStatus2.AppendText("\nERROR: " + ex.Message + "\n");
+                        richTextBox_conStatus2.ScrollToCaret();*/
                     }
 
                     //2-ая часть ответа
@@ -2695,7 +2722,7 @@ namespace KZMP_ENERGY
                     int p_minus2 = Convert.ToInt32(p_minus_str2, 16);
                     float p_minus_f2 = Convert.ToSingle(p_minus2);
                     calcRealPowerProfile(ref p_minus_f2, T, A);
-                    //if (p_minus_f2 > 65) { p_minus_f2 = 0; }
+                   
                     if (p_minus_str2 == "FFFF") { p_minus_f2 = 0; }
                     p_minus_str2 = Convert.ToString(p_minus_f2);
                     if (p_minus_str2.Contains(",")) p_minus_str2 = p_minus_str2.Replace(",", ".");
@@ -2727,7 +2754,7 @@ namespace KZMP_ENERGY
                     int q_minus2 = Convert.ToInt32(q_minus_str2, 16);
                     float q_minus_f2 = Convert.ToSingle(q_minus2);
                     calcRealPowerProfile(ref q_minus_f2, T, A);
-                    //if (q_minus_f2 > 65) { q_minus_f2 = 0; }
+                    
                     if (q_minus_str2 == "FFFF") { q_minus_f2 = 0; }
                     q_minus_str2 = Convert.ToString(q_minus_f2);
                     if (q_minus_str2.Contains(",")) q_minus_str2 = q_minus_str2.Replace(",", ".");
@@ -2740,8 +2767,8 @@ namespace KZMP_ENERGY
                     }
                     catch (Exception ex)
                     {
-                        richTextBox_conStatus2.AppendText("\nERROR: " + ex.Message + "\n");
-                        richTextBox_conStatus2.ScrollToCaret();
+                        /*richTextBox_conStatus2.AppendText("\nERROR: " + ex.Message + "\n");
+                        richTextBox_conStatus2.ScrollToCaret();*/
                     }
 
 
@@ -2775,11 +2802,11 @@ namespace KZMP_ENERGY
                 {
                     crc_check_flag = false;
 
-                    richTextBox_conStatus2.AppendText("\n###Повтор запроса - не совпадение CRC-значений!###");
-                    richTextBox_conStatus2.ScrollToCaret();
+                    /*richTextBox_conStatus2.AppendText("\n###Повтор запроса - не совпадение CRC-значений!###");
+                    richTextBox_conStatus2.ScrollToCaret();*/
 
-                    textBox2.Text = "######################";
-                    textBox1.Text = "Не совпадение хэш-сумм";
+                   // textBox2.Text = "######################";
+                  //  textBox1.Text = "Не совпадение хэш-сумм";
                 }
             }
         }
@@ -2800,20 +2827,20 @@ namespace KZMP_ENERGY
         }
         private void write_to_box()
         {
-            richTextBox_conStatus2.AppendText("\nПрофиль мощности загружен.");
-            richTextBox_conStatus2.ScrollToCaret();
+           /* richTextBox_conStatus2.AppendText("\nПрофиль мощности загружен.");
+            richTextBox_conStatus2.ScrollToCaret();*/
 
-            TimeoutTextBox2.Text = "(.......)";
+           // TimeoutTextBox2.Text = "(.......)";
         }
         private void write_disconnect()
         {
-            richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nОТКЛЮЧЕНИЕ\n-------------------------------------------------------------------------------------------------");
-            richTextBox_conStatus2.ScrollToCaret();
+            /*richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nОТКЛЮЧЕНИЕ\n-------------------------------------------------------------------------------------------------");
+            richTextBox_conStatus2.ScrollToCaret();*/
 
             if (!port.CDHolding)
             {
-                StatusTextBox.Text = "NO CARRIER";
-                global_status_flag = false;
+                /*StatusTextBox.Text = "NO CARRIER";
+                global_status_flag = false;*/
 
                 MessageBox.Show(
                 "Ошибка связи: потеря несущей.\nБудет выполнена перезагрузка программы.",
@@ -2835,15 +2862,15 @@ namespace KZMP_ENERGY
 
             port.Close();
 
-            richTextBox_conStatus2.AppendText("\nСоединение разорвано.");
-            richTextBox_conStatus2.ScrollToCaret();
+           /* richTextBox_conStatus2.AppendText("\nСоединение разорвано.");
+            richTextBox_conStatus2.ScrollToCaret();*/
 
             //разблокировка кнопок
-            g.btnHome.Enabled = true;
+            /*g.btnHome.Enabled = true;
             g.iconButton1.Enabled = true;
            g.iconButton2.Enabled = true;
             g.iconButton3.Enabled = true;
-            // g.iconButton4.Enabled = false;
+           
             g.iconButton5.Enabled = true;
             g.iconButton6.Enabled = true;
             g.iconButton4.Enabled = true;
@@ -2853,15 +2880,13 @@ namespace KZMP_ENERGY
             datePickerStart.Enabled = true;
             datePickerEnd.Enabled = true;
             timePickerStart.Enabled = true;
-            timePickerEnd.Enabled = true;
+            timePickerEnd.Enabled = true;*/
 
 
         }
         private async void iconButton2_Click(object sender, EventArgs e)
         {
-            //await Task.Run(() => write_disconnect());
-            // await Task.Run(() => read4());
-            //MessageBox.Show("Отключение. Будет выполнен рестарт программы.");
+            
 
             MessageBox.Show(
                 "Отключение. Будет выполнен рестарт программы.",
@@ -2899,8 +2924,8 @@ namespace KZMP_ENERGY
                 //УСТАНОВКА ПАРАМЕТРОВ НА ШЛЮЗЕ
                 byte[] set_gateway_param = new byte[] { 0x27, 0xb7, 0xfc, 0x01, 0x00, 0x04, 0x00, 0x00, 0x01, 0x16, 0x33, 0x64, 0xad };
                 
-                richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nУСТАНОВКА ПАРАМЕТРОВ НА GSM-ШЛЮЗЕ\n-------------------------------------------------------------------------------------------------");
-                richTextBox_conStatus2.ScrollToCaret();
+                /*richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nУСТАНОВКА ПАРАМЕТРОВ НА GSM-ШЛЮЗЕ\n-------------------------------------------------------------------------------------------------");
+                richTextBox_conStatus2.ScrollToCaret();*/
 
                 timeOver = 0;
                 timeOverFlag = true;
@@ -2945,8 +2970,8 @@ namespace KZMP_ENERGY
                 //checksum
                 meter_connection_test[12] = Convert.ToByte((meter_connection_test[8]+ meter_connection_test[9] + meter_connection_test[10] + meter_connection_test[11]+0xff)&0xff);
 
-                richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nТЕСТИРОВАНИЕ СОЕДИНЕНИЯ СО СЧЁТЧИКОМ (адрес: " + Convert.ToString(address) + ")\n-------------------------------------------------------------------------------------------------");
-               richTextBox_conStatus2.ScrollToCaret();
+               /* richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nТЕСТИРОВАНИЕ СОЕДИНЕНИЯ СО СЧЁТЧИКОМ (адрес: " + Convert.ToString(address) + ")\n-------------------------------------------------------------------------------------------------");
+               richTextBox_conStatus2.ScrollToCaret();*/
 
                 timeOver = 0;
                 timeOverFlag = true;
@@ -2998,8 +3023,8 @@ namespace KZMP_ENERGY
                                             ath_meter_gateway[11] + ath_meter_gateway[12] + ath_meter_gateway[13] + ath_meter_gateway[14] + 
                                             ath_meter_gateway[15] + ath_meter_gateway[16] + ath_meter_gateway[17] + ath_meter_gateway[18]+0xff)&0xff);
 
-                richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nАУТЕНТИФИКАЦИЯ И АВТОРИЗАЦИЯ НА СЧЁТЧИКЕ(адрес: " + Convert.ToString(address) + ")\n-------------------------------------------------------------------------------------------------");
-               richTextBox_conStatus2.ScrollToCaret();
+               /* richTextBox_conStatus2.AppendText("\n-------------------------------------------------------------------------------------------------\nАУТЕНТИФИКАЦИЯ И АВТОРИЗАЦИЯ НА СЧЁТЧИКЕ(адрес: " + Convert.ToString(address) + ")\n-------------------------------------------------------------------------------------------------");
+               richTextBox_conStatus2.ScrollToCaret();*/
 
                 await Task.Run(() => write(ath_meter_gateway, ath_meter_gateway.Length));
                 //await Task.Run(() => read4(ath_meter, ath_meter.Length));
@@ -3023,7 +3048,16 @@ namespace KZMP_ENERGY
             }
         }
 
+        private void datePickerStart_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime date = datePickerStart.Value;
+            int lastMonth = date.Month - 1;
 
+            switch(lastMonth)
+            {
+                //case 0: {comboBox_Months.SelectedItem = comboBox_Months.Items[comboBox_Months.inde] break; }
+            }
+        }
     }
 
     public class meter_date_time_class

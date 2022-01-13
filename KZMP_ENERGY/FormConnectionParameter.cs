@@ -146,8 +146,10 @@ namespace KZMP_ENERGY
            indata = indata.Replace(" ", "");
            indata = indata.Replace("\r", "");
            indata = indata.Replace("\n", "");*/
-           richTextBox_conStatus.AppendText("\nОтвет:" + indata );
-           richTextBox_conStatus.ScrollToCaret();
+
+           /*richTextBox_conStatus.AppendText("\nОтвет:" + indata );
+           richTextBox_conStatus.ScrollToCaret();*/
+
             // Thread.Sleep(1000);
             // port.Write("+++");
             // Thread.Sleep(1000);
@@ -156,8 +158,11 @@ namespace KZMP_ENERGY
             Thread.Sleep(200);
 
             //b.btnHome.Enabled = true;
-            b.iconButton1.Enabled = true;
-            iconButton1.Enabled = true;
+
+          //  b.iconButton1.Enabled = true;
+          //  iconButton1.Enabled = true;
+
+
             //b.iconButton2.Enabled = true;
             //b.iconButton3.Enabled = true;
             // g.iconButton4.Enabled = false;
@@ -172,7 +177,7 @@ namespace KZMP_ENERGY
             indata = indata.Replace(" ", "");
             indata = indata.Replace("\r", "");
             indata = indata.Replace("\n", "");
-            richTextBox_conStatus.AppendText("\nОтвет:"+indata+" \n");
+            //richTextBox_conStatus.AppendText("\nОтвет:"+indata+" \n");
             port.DataReceived -= DataReceivedHandler2;
         }
         private async void iconButton1_MouseDown(object sender, MouseEventArgs e)
@@ -180,21 +185,21 @@ namespace KZMP_ENERGY
             if (NumbersInfoList[comboBox5.SelectedIndex].Interface == "GSM-шлюз") { GSM_gateway_flag = true; }
             else if (NumbersInfoList[comboBox5.SelectedIndex].Interface == "GSM") { GSM_modem_flag = true; }
 
-            iconButton1.Enabled = false;
+          /*  iconButton1.Enabled = false;
             b.btnHome.Enabled = false;
             b.iconButton1.Enabled =false;
             b.iconButton2.Enabled = false;
             b.iconButton3.Enabled = false;
-            // g.iconButton4.Enabled = false;
+            
             b.iconButton5.Enabled = false;
             b.iconButton6.Enabled = false;
-            b.iconButton4.Enabled = false;
+            b.iconButton4.Enabled = false;*/
 
             sim_number = Convert.ToString(comboBox5.SelectedItem);
             try
             {
-
-                richTextBox_conStatus.AppendText("\n----------------------------------------------------------------------------------------------------\nИНИЦИАЛИЗАЦИЯ СОЕДИНЕНИЯ\n----------------------------------------------------------------------------------------------------");
+/*
+                richTextBox_conStatus.AppendText("\n----------------------------------------------------------------------------------------------------\nИНИЦИАЛИЗАЦИЯ СОЕДИНЕНИЯ\n----------------------------------------------------------------------------------------------------");*/
 
                 port = new SerialPort();
 
@@ -216,38 +221,38 @@ namespace KZMP_ENERGY
 
                 port.DiscardInBuffer();
 
-                richTextBox_conStatus.AppendText("\r\nВыполнить: ATZ");
+               // richTextBox_conStatus.AppendText("\r\nВыполнить: ATZ");
                 port.Write("ATZ" + "\r");
                 Thread.Sleep(100);
                 port.ReadLine();
-              richTextBox_conStatus.AppendText("\nОтвет:" + port.ReadExisting());
+             // richTextBox_conStatus.AppendText("\nОтвет:" + port.ReadExisting());
 
                 port.DiscardInBuffer();
                // port.DiscardOutBuffer();
                // port.BaseStream.Flush();
 
-                richTextBox_conStatus.AppendText("\r\nВыполнить: ATE0");
+               // richTextBox_conStatus.AppendText("\r\nВыполнить: ATE0");
                 port.Write("ATE0" + "\r");
                 Thread.Sleep(100);
                 port.ReadLine();
-                richTextBox_conStatus.AppendText("\nОтвет:" + port.ReadExisting());
+               // richTextBox_conStatus.AppendText("\nОтвет:" + port.ReadExisting());
 
                 port.DiscardInBuffer();
                 //port.DiscardOutBuffer();
                // port.BaseStream.Flush();
 
-               richTextBox_conStatus.AppendText("\nВыполнить: AT+CBST=" + Convert.ToString(comboBox4.SelectedItem));
+              // richTextBox_conStatus.AppendText("\nВыполнить: AT+CBST=" + Convert.ToString(comboBox4.SelectedItem));
                 port.Write("AT+CBST=" + Convert.ToString(comboBox4.SelectedItem) + "\r");
                 Thread.Sleep(100);
                 port.ReadLine();
-                richTextBox_conStatus.AppendText("\nОтвет:" + port.ReadExisting());
+             //   richTextBox_conStatus.AppendText("\nОтвет:" + port.ReadExisting());
 
                 port.DiscardInBuffer();
                 //port.DiscardOutBuffer();
                 //port.BaseStream.Flush();
 
                 //port.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-                richTextBox_conStatus.AppendText("\nВыполнить: ATD" + Convert.ToString(NumbersInfoList[comboBox5.SelectedIndex].number));
+             //   richTextBox_conStatus.AppendText("\nВыполнить: ATD" + Convert.ToString(NumbersInfoList[comboBox5.SelectedIndex].number));
                 port.Write("ATD" + Convert.ToString(NumbersInfoList[comboBox5.SelectedIndex].number) + "\r");
                 sim_number = NumbersInfoList[comboBox5.SelectedIndex].number;
                 //read_atd();
@@ -296,32 +301,22 @@ namespace KZMP_ENERGY
 
             if (str.Contains("CO") || str.Contains("ON"))
             {
-                richTextBox_conStatus.AppendText("\nОтвет: CONNECT - соединение установлено.");
+             //   richTextBox_conStatus.AppendText("\nОтвет: CONNECT - соединение установлено.");
 
-                //////b.btnHome.Enabled = true;
-                b.iconButton1.Enabled = true;
-                iconButton1.Enabled = true;
-                //////b.iconButton2.Enabled = true;
-                //////b.iconButton3.Enabled = true;
-                // g.iconButton4.Enabled = false;
-                //////b.iconButton5.Enabled = true;
-               ////// b.iconButton6.Enabled = true;
-                //////b.iconButton4.Enabled = true;
+               
+             //   b.iconButton1.Enabled = true;
+             //   iconButton1.Enabled = true;
+                
             }
 
             if (str.Contains("BU") || str.Contains("SY")||str.Contains("US"))
             {
-                richTextBox_conStatus.AppendText("\nОтвет: BUSY - линия занята.");
+              //  richTextBox_conStatus.AppendText("\nОтвет: BUSY - линия занята.");
 
-                ////b.btnHome.Enabled = true;
-                b.iconButton1.Enabled = true;
-                iconButton1.Enabled = true;
-                ////b.iconButton2.Enabled = true;
-                ////b.iconButton3.Enabled = true;
-                // g.iconButton4.Enabled = false;
-                ////b.iconButton5.Enabled = true;
-                ////b.iconButton6.Enabled = true;
-                ////b.iconButton4.Enabled = true;
+                
+              //  b.iconButton1.Enabled = true;
+             //   iconButton1.Enabled = true;
+                
 
                 MessageBox.Show("Линия занята. Будет выполнен рестарт программы");
                 Application.Restart();
@@ -329,17 +324,12 @@ namespace KZMP_ENERGY
 
             if (str.Contains("NO") || str.Contains("CA") || str.Contains("AR"))
             {
-                richTextBox_conStatus.AppendText("\nОтвет: NO CARRIER - потеря несущей.");
+               // richTextBox_conStatus.AppendText("\nОтвет: NO CARRIER - потеря несущей.");
 
-                //b.btnHome.Enabled = true;
-                b.iconButton1.Enabled = true;
-                iconButton1.Enabled = true;
-                //b.iconButton2.Enabled = true;
-                //b.iconButton3.Enabled = true;
-                // g.iconButton4.Enabled = false;
-                // b.iconButton5.Enabled = true;
-                // b.iconButton6.Enabled = true;
-                //b.iconButton4.Enabled = true;
+                
+              //  b.iconButton1.Enabled = true;
+              //  iconButton1.Enabled = true;
+                
 
                 MessageBox.Show("Потеря несущей. Будет выполнен рестарт программы");
                 Application.Restart();
@@ -350,8 +340,8 @@ namespace KZMP_ENERGY
         {
             try
             {
-                richTextBox_conStatus.AppendText("\n----------------------------------------------------------------------------------------------------\nОТКЛЮЧЕНИЕ\n----------------------------------------------------------------------------------------------------");
-                richTextBox_conStatus.ScrollToCaret();
+               // richTextBox_conStatus.AppendText("\n----------------------------------------------------------------------------------------------------\nОТКЛЮЧЕНИЕ\n----------------------------------------------------------------------------------------------------");
+               // richTextBox_conStatus.ScrollToCaret();
                 port.DiscardInBuffer();
 
                 Thread.Sleep(1000);
@@ -362,8 +352,8 @@ namespace KZMP_ENERGY
 
                 port.Close();
 
-                richTextBox_conStatus.AppendText("\nОтвет: Соединение разорвано.");
-               richTextBox_conStatus.ScrollToCaret();
+              //  richTextBox_conStatus.AppendText("\nОтвет: Соединение разорвано.");
+              // richTextBox_conStatus.ScrollToCaret();
 
                 MessageBox.Show("Соединение разорвано. Будет выполнен рестарт программы.");
                 //Thread.Sleep(5000);

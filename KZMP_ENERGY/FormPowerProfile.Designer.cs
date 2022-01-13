@@ -43,6 +43,10 @@
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.InterfaceTypeLbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cb_monthEnergy = new System.Windows.Forms.CheckBox();
+            this.comboBox_Months = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -68,19 +72,15 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.richTextBox_conStatus2 = new System.Windows.Forms.RichTextBox();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.comboBox_Months = new System.Windows.Forms.ComboBox();
-            this.cb_monthEnergy = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -221,6 +221,68 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(842, 204);
             this.panel2.TabIndex = 1;
+            // 
+            // cb_monthEnergy
+            // 
+            this.cb_monthEnergy.AutoSize = true;
+            this.cb_monthEnergy.Checked = true;
+            this.cb_monthEnergy.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_monthEnergy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cb_monthEnergy.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.cb_monthEnergy.Location = new System.Drawing.Point(70, 118);
+            this.cb_monthEnergy.Name = "cb_monthEnergy";
+            this.cb_monthEnergy.Size = new System.Drawing.Size(110, 19);
+            this.cb_monthEnergy.TabIndex = 27;
+            this.cb_monthEnergy.Text = "Использовать";
+            this.cb_monthEnergy.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_Months
+            // 
+            this.comboBox_Months.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox_Months.FormattingEnabled = true;
+            this.comboBox_Months.Items.AddRange(new object[] {
+            "1. Январь",
+            "2. Февраль",
+            "3. Март",
+            "4. Апрель",
+            "5. Май",
+            "6. Июнь",
+            "7. Июль",
+            "8. Август",
+            "9. Сентябрь",
+            "10. Октябрь",
+            "11. Ноябрь",
+            "12. Декабрь"});
+            this.comboBox_Months.Location = new System.Drawing.Point(250, 98);
+            this.comboBox_Months.Name = "comboBox_Months";
+            this.comboBox_Months.Size = new System.Drawing.Size(230, 24);
+            this.comboBox_Months.TabIndex = 26;
+            this.comboBox_Months.Text = "Выберите месяц";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(65, 97);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(187, 17);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "Энергия (кВт*ч) за период:";
+            // 
+            // iconPictureBox5
+            // 
+            this.iconPictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.UniversalAccess;
+            this.iconPictureBox5.IconColor = System.Drawing.Color.White;
+            this.iconPictureBox5.IconSize = 40;
+            this.iconPictureBox5.Location = new System.Drawing.Point(11, 96);
+            this.iconPictureBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.iconPictureBox5.Name = "iconPictureBox5";
+            this.iconPictureBox5.Size = new System.Drawing.Size(50, 40);
+            this.iconPictureBox5.TabIndex = 24;
+            this.iconPictureBox5.TabStop = false;
             // 
             // textBox1
             // 
@@ -488,6 +550,7 @@
             this.datePickerStart.Name = "datePickerStart";
             this.datePickerStart.Size = new System.Drawing.Size(121, 23);
             this.datePickerStart.TabIndex = 5;
+            this.datePickerStart.ValueChanged += new System.EventHandler(this.datePickerStart_ValueChanged);
             // 
             // label1
             // 
@@ -537,68 +600,6 @@
             this.panel6.Size = new System.Drawing.Size(842, 249);
             this.panel6.TabIndex = 10;
             // 
-            // iconPictureBox5
-            // 
-            this.iconPictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
-            this.iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.UniversalAccess;
-            this.iconPictureBox5.IconColor = System.Drawing.Color.White;
-            this.iconPictureBox5.IconSize = 40;
-            this.iconPictureBox5.Location = new System.Drawing.Point(11, 96);
-            this.iconPictureBox5.Margin = new System.Windows.Forms.Padding(2);
-            this.iconPictureBox5.Name = "iconPictureBox5";
-            this.iconPictureBox5.Size = new System.Drawing.Size(50, 40);
-            this.iconPictureBox5.TabIndex = 24;
-            this.iconPictureBox5.TabStop = false;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(65, 97);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(187, 17);
-            this.label10.TabIndex = 25;
-            this.label10.Text = "Энергия (кВт*ч) за период:";
-            // 
-            // comboBox_Months
-            // 
-            this.comboBox_Months.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox_Months.FormattingEnabled = true;
-            this.comboBox_Months.Items.AddRange(new object[] {
-            "1. Январь",
-            "2. Февраль",
-            "3. Март",
-            "4. Апрель",
-            "5. Май",
-            "6. Июнь",
-            "7. Июль",
-            "8. Август",
-            "9. Сентябрь",
-            "10. Октябрь",
-            "11. Ноябрь",
-            "12. Декабрь"});
-            this.comboBox_Months.Location = new System.Drawing.Point(250, 98);
-            this.comboBox_Months.Name = "comboBox_Months";
-            this.comboBox_Months.Size = new System.Drawing.Size(230, 24);
-            this.comboBox_Months.TabIndex = 26;
-            this.comboBox_Months.Text = "Выберите месяц";
-            // 
-            // cb_monthEnergy
-            // 
-            this.cb_monthEnergy.AutoSize = true;
-            this.cb_monthEnergy.Checked = true;
-            this.cb_monthEnergy.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_monthEnergy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cb_monthEnergy.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cb_monthEnergy.Location = new System.Drawing.Point(70, 118);
-            this.cb_monthEnergy.Name = "cb_monthEnergy";
-            this.cb_monthEnergy.Size = new System.Drawing.Size(110, 19);
-            this.cb_monthEnergy.TabIndex = 27;
-            this.cb_monthEnergy.Text = "Использовать";
-            this.cb_monthEnergy.UseVisualStyleBackColor = true;
-            // 
             // FormPowerProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -619,11 +620,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
             this.panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
