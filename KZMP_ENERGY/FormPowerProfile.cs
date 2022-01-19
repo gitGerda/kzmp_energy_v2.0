@@ -19,7 +19,6 @@ using System.Configuration;
 
 namespace KZMP_ENERGY
 {
-
     public partial class FormPowerProfile : Form
     {
         //static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=DBkzmp_energy;Integrated Security=True";
@@ -224,21 +223,24 @@ namespace KZMP_ENERGY
                 //selected_index = comboBox1.SelectedIndex;
 
                 //блокировка кнопок формы
-                             /* g.btnHome.Enabled = false;
-                             g.iconButton1.Enabled = false;
-                             g.iconButton2.Enabled = false;
-                              g.iconButton3.Enabled = false;*/
-             
-                             /* g.iconButton5.Enabled = false;
-                             g.iconButton6.Enabled = false;
-                              g.iconButton4.Enabled = false;
+               /* g.btnHome.Enabled = false;
+                g.iconButton1.Enabled = false;
+                g.iconButton2.Enabled = false;
+                g.iconButton3.Enabled = false;
 
-                                iconButton1.Enabled = false;
-                                dataGridView1.Enabled = false;
-                                datePickerStart.Enabled = false;
-                                datePickerEnd.Enabled = false;
-                                timePickerStart.Enabled = false;
-                                timePickerEnd.Enabled = false;*/
+                g.iconButton5.Enabled = false;
+                g.iconButton6.Enabled = false;
+                g.iconButton4.Enabled = false;
+
+                iconButton1.Enabled = false;
+                dataGridView1.Enabled = false;
+                datePickerStart.Enabled = false;
+                datePickerEnd.Enabled = false;
+                timePickerStart.Enabled = false;
+                timePickerEnd.Enabled = false;
+                comboBox_Months.Enabled = false;*/
+
+
 
                 //инициализация переменной, в которой хранится число счётчиков для которых нужно снять данные
                 //meterCallIndex служит и как индекс следующего счётчика и как число характеризующее количество вызовов iconButton1_MouseDown
@@ -439,7 +441,7 @@ namespace KZMP_ENERGY
             return crc_bytes;
         }
         //функция вычисления CRC24
-        public byte[] CalculateCrc24(byte[] bytes) 
+        public static byte[] CalculateCrc24(byte[] bytes) 
         {
             CRC16.CrcStdParams.StandartParameters.TryGetValue(CRC16.CrcAlgorithms.Crc24, out CRC16.Parameters crc_p);
             CRC16.Crc crc = new CRC16.Crc(crc_p);
@@ -712,8 +714,8 @@ namespace KZMP_ENERGY
                 {
                     if (cb_monthEnergy.Checked)
                     {
-                        KZMP_ENERGY.monthEnergy.energy energyReadClass = new monthEnergy.energy(ref port, address_b, id_meter, comboBox_Months.SelectedItem.ToString(), this);
-                        energyReadClass.getMonthEnergy();
+                        KZMP_ENERGY.monthEnergy.energy energyReadClass = new monthEnergy.energy(address_b, id_meter, comboBox_Months.SelectedItem.ToString());
+                        await Task.Run(() => energyReadClass.getMonthEnergy(false));
                     }
                 }
                 catch(Exception ex)
@@ -739,6 +741,20 @@ namespace KZMP_ENERGY
                     {
                         MessageBox.Show(ex.Message, "kzmp_energy notification", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                     }
+                }
+                try
+                {
+                    if (cb_monthEnergy.Checked)
+                    {
+                        KZMP_ENERGY.monthEnergy.energy energyReadClass = new monthEnergy.energy(address_b, id_meter, comboBox_Months.SelectedItem.ToString());
+                        await Task.Run(()=> energyReadClass.getMonthEnergy(true));      
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //richTextBox_conStatus2.AppendText(ex.Message);
+                    //richTextBox_conStatus2.ScrollToCaret();
+                    MessageBox.Show(ex.Message);
                 }
             }
             try
@@ -3056,6 +3072,34 @@ namespace KZMP_ENERGY
             switch(lastMonth)
             {
                 //case 0: {comboBox_Months.SelectedItem = comboBox_Months.Items[comboBox_Months.inde] break; }
+            }
+        }
+
+        private void FormPowerProfile_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                int currentMonth = DateTime.Now.Month;
+
+                switch (currentMonth)
+                {
+                    case 1: { comboBox_Months.SelectedIndex = 11; break; }
+                    case 2: { comboBox_Months.SelectedIndex = 0; break; }
+                    case 3: { comboBox_Months.SelectedIndex = 1; break; }
+                    case 4: { comboBox_Months.SelectedIndex = 2; break; }
+                    case 5: { comboBox_Months.SelectedIndex = 3; break; }
+                    case 6: { comboBox_Months.SelectedIndex = 4; break; }
+                    case 7: { comboBox_Months.SelectedIndex = 5; break; }
+                    case 8: { comboBox_Months.SelectedIndex = 6; break; }
+                    case 9: { comboBox_Months.SelectedIndex = 7; break; }
+                    case 10: { comboBox_Months.SelectedIndex = 8; break; }
+                    case 11: { comboBox_Months.SelectedIndex = 9; break; }
+                    case 12: { comboBox_Months.SelectedIndex = 10; break; }
+                }
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

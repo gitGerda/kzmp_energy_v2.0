@@ -1193,6 +1193,34 @@ namespace KZMP_ENERGY
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void FormReport_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                int currentMonth = DateTime.Now.Month;
+
+                switch (currentMonth)
+                {
+                    case 1: { comboBox_Months.SelectedIndex = 11; break; }
+                    case 2: { comboBox_Months.SelectedIndex = 0; break; }
+                    case 3: { comboBox_Months.SelectedIndex = 1; break; }
+                    case 4: { comboBox_Months.SelectedIndex = 2; break; }
+                    case 5: { comboBox_Months.SelectedIndex = 3; break; }
+                    case 6: { comboBox_Months.SelectedIndex = 4; break; }
+                    case 7: { comboBox_Months.SelectedIndex = 5; break; }
+                    case 8: { comboBox_Months.SelectedIndex = 6; break; }
+                    case 9: { comboBox_Months.SelectedIndex = 7; break; }
+                    case 10: { comboBox_Months.SelectedIndex = 8; break; }
+                    case 11: { comboBox_Months.SelectedIndex = 9; break; }
+                    case 12: { comboBox_Months.SelectedIndex = 10; break; }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
     public class MeausuringPointInfo
     {

@@ -614,6 +614,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormPowerProfile";
             this.Text = "FormPowerProfile";
+            this.Load += new System.EventHandler(this.FormPowerProfile_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

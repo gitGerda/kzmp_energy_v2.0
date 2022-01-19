@@ -144,6 +144,7 @@
     </Compile>
     <Compile Include="monthEnergy\energy.cs" />
     <Compile Include="monthEnergy\functionsToDatabase.cs" />
+    <Compile Include="monthEnergy\gatewayFunc.cs" />
     <Compile Include="monthEnergy\recordToDatabase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

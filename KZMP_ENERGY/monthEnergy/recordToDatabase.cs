@@ -11,8 +11,8 @@ namespace KZMP_ENERGY.monthEnergy
         public string meterId;
         public string year;
         public string month;
-        public float startValue;
-        public float endValue;
+        public double startValue;
+        public double endValue;
         
     }
 }
