@@ -15,6 +15,7 @@ using System.Xml.XPath;
 using System.Linq;
 using System.Configuration;
 using System.IO.Compression;
+using KZMP_ENERGY.monthEnergy.energyReport;
 
 namespace KZMP_ENERGY
 {
@@ -212,6 +213,10 @@ namespace KZMP_ENERGY
         {
             try
             {
+                int monthEnergy = DateTime.Now.Month - 1;
+                int yearEnergy = DateTime.Now.Year;
+
+                string path = "";
                 //Create the object
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
@@ -221,6 +226,67 @@ namespace KZMP_ENERGY
                 //save to apply changes
                 config.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection("appSettings");
+
+                DirectoryInfo dirInfo = new DirectoryInfo(textBox_path.Text);
+                if(dirInfo.Exists)
+                {
+                    path = textBox_path.Text;
+                    path = path + @"\" + comboBox1.SelectedItem.ToString().Replace(" ","");
+
+                    dirInfo = new DirectoryInfo(path);
+                    if(!dirInfo.Exists)
+                    { 
+                        try
+                        {
+                            dirInfo.Create();
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            return;
+                        }
+                    }
+                    string monthToPath="";
+                    switch (DateTime.Now.Month)
+                    {
+                        case 1: { monthToPath = "Январь";monthEnergy = 12;yearEnergy = yearEnergy - 1; break; }
+                        case 2: { monthToPath = "Февраль"; break; }
+                        case 3: { monthToPath = "Март"; break; }
+                        case 4: { monthToPath = "Апрель"; break; }
+                        case 5: { monthToPath = "Май"; break; }
+                        case 6: { monthToPath = "Июнь"; break; }
+                        case 7: { monthToPath = "Июль"; break; }
+                        case 8: { monthToPath = "Август"; break; }
+                        case 9: { monthToPath = "Сентябрь"; break; }
+                        case 10: {  monthToPath = "Октябрь"; break; }
+                        case 11: {  monthToPath = "Ноябрь"; break; }
+                        case 12: {  monthToPath = "Декабрь"; break; }
+                    }
+
+
+
+
+                    path = path + @"\" + DateTime.Now.Day.ToString() +"-"+ monthToPath+"-" + DateTime.Now.Year.ToString()+"_"+DateTime.Now.Hour.ToString()+"-"+ DateTime.Now.Minute.ToString() + "-"+ DateTime.Now.Second.ToString();
+                    dirInfo = new DirectoryInfo(path);
+                    if(!dirInfo.Exists)
+                    {
+                        try
+                        {
+                            dirInfo.Create();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(@"Не удалось найти директорию указанную в поле ""Путь для сохранения отчёта""");
+                    return;
+                }
+
 
                 GeneralSum = 0;
                 GenFloatSum = 0;
@@ -245,6 +311,31 @@ namespace KZMP_ENERGY
                 {
                     MessageBox.Show(ex.Message);
                 }
+                string endFolderZIP = getEndFolderNameZIP(path);
+                string endFolder = endFolderZIP.Replace(".zip", "");
+
+                dirInfo = new DirectoryInfo(endFolder);
+                if(!dirInfo.Exists)
+                {
+                    try
+                    {
+                        dirInfo.Create();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return;
+                    }
+                }
+
+                if (cb_monthEnergy.Checked)
+                {
+                    int indexMonth = comboBox_Months.SelectedIndex + 1;
+                    energyReport enerReport = new energyReport(comboBox1.SelectedItem.ToString(), Convert.ToString(indexMonth),
+                        textBoxYearEnergy.Text, textBox2.Text);
+                    await Task.Run(() => enerReport.createEnergyReport());
+                }
+
                 //timestamp date
                 string StartData = datePickerStart.Value.ToShortDateString();
                 string StartTime = timePickerStart.Value.ToShortTimeString();
@@ -260,12 +351,14 @@ namespace KZMP_ENERGY
                 for (int i = 0; i < documents_count; i++)
                 {
                     string current_msg_number_str = Convert.ToString(current_msg_number);
-                    await Task.Run(() => createXml80020(textBox2.Text, startDate, current_msg_number_str, StartData));
+                    await Task.Run(() => createXml80020(textBox2.Text, startDate, current_msg_number_str, StartData,endFolder));
                     await Task.Run(() => startDateAddDay(ref startDate, ref current_msg_number));
                 }
 
                 await Task.Run(() => statusEnd());
-                await Task.Run(() => GetZip());
+                await Task.Run(() => GetZip(endFolder,endFolderZIP));
+
+                
 
             }
             catch (Exception ex)
@@ -275,6 +368,7 @@ namespace KZMP_ENERGY
             }
 
         }
+        
         private void statusStart()
         {
             richTextBox_conStatus2.AppendText("\n----------------------------------------------------------------------------\nФОРМИРОВАНИЕ ОТЧЁТА\n----------------------------------------------------------------------------");
@@ -285,11 +379,9 @@ namespace KZMP_ENERGY
             richTextBox_conStatus2.AppendText("\nОтчёт сформирован.");
             richTextBox_conStatus2.ScrollToCaret();
         }
-
-        //функция архивации файлов xml80020
-        private async void GetZip()
+        public string getEndFolderNameZIP(string path)
         {
-            string sourceFolder = textBox_path.Text;
+            string sourceFolder = path;
 
             string contract = "";
 
@@ -315,12 +407,14 @@ namespace KZMP_ENERGY
             }
             string year = Convert.ToString(start.Year);
 
-            string endFolderName = textBox_path.Text + "\\.." + "\\" + textBox2.Text + "_" + contract + "_" + month + "_" + year + ".zip";
-            //string endFolderName = textBox_path.Text + "\\" + textBox2.Text + "_" + contract + "_" + month + "_" + year + ".zip";
+            string endFolderName = sourceFolder+ "\\" + textBox2.Text + "_" + contract + "_" + month + "_" + year + ".zip";
 
+            return endFolderName;
+        }
+        //функция архивации файлов xml80020
+        private async void GetZip(string sourceFolder, string endFolderName)
+        {
             f(sourceFolder, endFolderName);
-            //await Task.Run(() => f(sourceFolder, endFolderName));
-
 
             richTextBox_conStatus2.AppendText("\n----------------------------------------------------------------------------\nАРХИВАЦИЯ\n----------------------------------------------------------------------------");
             richTextBox_conStatus2.ScrollToCaret();
@@ -328,23 +422,7 @@ namespace KZMP_ENERGY
             richTextBox_conStatus2.AppendText("\n" + endFolderName);
             richTextBox_conStatus2.ScrollToCaret();
 
-            /*
-            richTextBox_conStatus2.AppendText("\nОтчет готов!");
-            richTextBox_conStatus2.ScrollToCaret();
-
-            richTextBox_conStatus2.AppendText("\n----------------------------------------------------------------------------\nОбщая сумма значений профиля мощности (с учетом трансформации) за выбранный период: " + GeneralSum + " кВт");
-            richTextBox_conStatus2.ScrollToCaret();
-            */
             MessageBox.Show("Отчет готов!\nОбщая сумма значений профиля мощности (с учетом трансформации) за выбранный период: " + Convert.ToString(GenFloatSum) + " кВт\nБудет выполнен рестарт программы!\n");
-
-            string asdf = "";
-
-            foreach(MeasCheckClass f in MeasCheckList)
-            {
-                asdf += f.id + "--->" + f.meas + "; ";
-            }
-
-            MessageBox.Show(asdf);
 
             await Task.Run(() => RestartApp());
         }
@@ -375,7 +453,7 @@ namespace KZMP_ENERGY
             documents_count = countVar.Days;
         }
         //функция создания документа xml80020
-        private void createXml80020(string inn, DateTime currentDate, string current_msg_number, string timestamp_txt)
+        private void createXml80020(string inn, DateTime currentDate, string current_msg_number, string timestamp_txt,string pathToSource)
         {
             string currentMonth = Convert.ToString(currentDate.Month);
             if (currentMonth.Length == 1) { currentMonth = currentMonth.Insert(0, "0"); }
@@ -384,7 +462,7 @@ namespace KZMP_ENERGY
             if (currentDay.Length == 1) { currentDay = currentDay.Insert(0, "0"); }
 
             string currentDateStr = Convert.ToString(currentDate.Year) + currentMonth + currentDay;
-            string doc_path = textBox_path.Text + "/80020_" + inn + "_" + currentDateStr + "_" + current_msg_number + ".xml";
+            string doc_path = pathToSource + "/80020_" + inn + "_" + currentDateStr + "_" + current_msg_number + ".xml";
             richTextBox_conStatus2.AppendText("\n" + doc_path);
             richTextBox_conStatus2.ScrollToCaret();
             string path = @"..\..\XMLFile1.xml";
@@ -1196,30 +1274,36 @@ namespace KZMP_ENERGY
 
         private void FormReport_Load(object sender, EventArgs e)
         {
-            try
-            {
+                textBoxYearEnergy.Text = DateTime.Now.Year.ToString();
+
                 int currentMonth = DateTime.Now.Month;
+                string prevMonth = "";
+                string yearDate = DateTime.Now.Year.ToString();
 
                 switch (currentMonth)
                 {
-                    case 1: { comboBox_Months.SelectedIndex = 11; break; }
-                    case 2: { comboBox_Months.SelectedIndex = 0; break; }
-                    case 3: { comboBox_Months.SelectedIndex = 1; break; }
-                    case 4: { comboBox_Months.SelectedIndex = 2; break; }
-                    case 5: { comboBox_Months.SelectedIndex = 3; break; }
-                    case 6: { comboBox_Months.SelectedIndex = 4; break; }
-                    case 7: { comboBox_Months.SelectedIndex = 5; break; }
-                    case 8: { comboBox_Months.SelectedIndex = 6; break; }
-                    case 9: { comboBox_Months.SelectedIndex = 7; break; }
-                    case 10: { comboBox_Months.SelectedIndex = 8; break; }
-                    case 11: { comboBox_Months.SelectedIndex = 9; break; }
-                    case 12: { comboBox_Months.SelectedIndex = 10; break; }
+                    case 1: { 
+                        comboBox_Months.SelectedIndex = 11;
+                        prevMonth = "12";
+                        textBoxYearEnergy.Text = Convert.ToString(DateTime.Now.Year-1);
+                            break; }
+                    case 2: { comboBox_Months.SelectedIndex = 0; prevMonth = "1"; break; }
+                    case 3: { comboBox_Months.SelectedIndex = 1; prevMonth = "2"; break; }
+                    case 4: { comboBox_Months.SelectedIndex = 2; prevMonth = "3"; break; }
+                    case 5: { comboBox_Months.SelectedIndex = 3; prevMonth = "4"; break; }
+                    case 6: { comboBox_Months.SelectedIndex = 4; prevMonth = "5"; break; }
+                    case 7: { comboBox_Months.SelectedIndex = 5; prevMonth = "6"; break; }
+                    case 8: { comboBox_Months.SelectedIndex = 6; prevMonth = "7"; break; }
+                    case 9: { comboBox_Months.SelectedIndex = 7; prevMonth = "8"; break; }
+                    case 10: { comboBox_Months.SelectedIndex = 8; prevMonth = "9"; break; }
+                    case 11: { comboBox_Months.SelectedIndex = 9; prevMonth = "10"; break; }
+                    case 12: { comboBox_Months.SelectedIndex = 10; prevMonth = "11"; break; }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+        }
+
+        private void textBoxYearEnergy_Click(object sender, EventArgs e)
+        {
+            textBoxYearEnergy.Text = "";
         }
     }
     public class MeausuringPointInfo

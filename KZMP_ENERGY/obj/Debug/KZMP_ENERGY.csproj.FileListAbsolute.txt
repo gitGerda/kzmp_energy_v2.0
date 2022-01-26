@@ -130,7 +130,6 @@ A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy\KZMP_ENERGY\obj\Debug\KZMP_ENERG
 A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy\KZMP_ENERGY\obj\Debug\kzmpEnergy.exe
 A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy\KZMP_ENERGY\obj\Debug\kzmpEnergy.pdb
 A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.csproj.AssemblyReference.cache
-A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.csproj.AssemblyReference.cache
 A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.FormMainMenu.resources
 A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.FormConnectionParameter.resources
 A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.FormListOfMeters.resources
@@ -154,3 +153,4 @@ A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\bin\Debug\GSMCo
 A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\bin\Debug\MetroSet UI.dll
 A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\bin\Debug\PDUConverter.dll
 A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.csproj.CopyComplete
+A:\WORK\PROJECTS\kzmp_energy\ACTUAL\kzmp_energy_v2.0\KZMP_ENERGY\obj\Debug\KZMP_ENERGY.csproj.AssemblyReference.cache

@@ -143,6 +143,8 @@
       <DependentUpon>InfoForReport.cs</DependentUpon>
     </Compile>
     <Compile Include="monthEnergy\energy.cs" />
+    <Compile Include="monthEnergy\energyReport\energyReport.cs" />
+    <Compile Include="monthEnergy\energyReport\meterInfo.cs" />
     <Compile Include="monthEnergy\functionsToDatabase.cs" />
     <Compile Include="monthEnergy\gatewayFunc.cs" />
     <Compile Include="monthEnergy\recordToDatabase.cs" />
